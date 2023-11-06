@@ -28,6 +28,11 @@ class Registrar():
         else:      
             salt = bcrypt.gensalt()
             hashed_password = bcrypt.hashpw(self.contraseña.encode('utf-8'), salt)
-            self.modelo.agregar(self.usuario, hashed_password, salt)
+            if self.usuario == "admin1":
+                rol = "Administrador"
+                self.modelo.agregar(self.usuario, hashed_password, salt,rol)
+            else:
+                rol = "Empleado"
+                self.modelo.agregar(self.usuario,hashed_password, salt,rol)
 
 

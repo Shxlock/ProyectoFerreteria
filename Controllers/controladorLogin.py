@@ -37,14 +37,14 @@ class LogInController():
 
     def autenticar(self, usuario, contraseña,Administrador,Empleado,Ui_Dialog):
         if usuario == "admin1" and contraseña == "admin123":
-   
+            rol = "Administrador"
             self.Dialog = QtWidgets.QMainWindow()
             self.Dialog.ui = Administrador()
             self.Dialog.ui.setupUi(self.Dialog)
             self.Dialog.show()
             print("Eres admin")
         else:
-            
+            rol = "Empleado"
             self.Dialog = QtWidgets.QMainWindow()
             self.Dialog.ui = Empleado()
             self.Dialog.ui.setupUi(self.Dialog)

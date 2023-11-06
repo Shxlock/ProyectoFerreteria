@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="logoFerreteria">
+    <file>menu.png</file>
+    <file>logoferreteria.png-HD.png</file>
+  </qresource>
+</RCC>

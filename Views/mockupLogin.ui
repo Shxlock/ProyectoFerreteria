@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>330</width>
-    <height>300</height>
+    <width>357</width>
+    <height>353</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,14 +16,14 @@
   <widget class="QLabel" name="lbl_inicioSesion">
    <property name="geometry">
     <rect>
-     <x>-40</x>
+     <x>-20</x>
      <y>0</y>
-     <width>411</width>
+     <width>421</width>
      <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(12, 67, 139);
+    <string notr="true">background-color: rgb(183, 200, 238);
 font: 87 14pt &quot;Arial Black&quot;;
 color: rgb(243, 243, 243);</string>
    </property>
@@ -42,8 +42,8 @@ color: rgb(243, 243, 243);</string>
     <rect>
      <x>0</x>
      <y>50</y>
-     <width>330</width>
-     <height>10</height>
+     <width>361</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -58,12 +58,15 @@ color: rgb(243, 243, 243);</string>
     <rect>
      <x>0</x>
      <y>60</y>
-     <width>331</width>
-     <height>211</height>
+     <width>361</width>
+     <height>271</height>
     </rect>
    </property>
+   <property name="mouseTracking">
+    <bool>false</bool>
+   </property>
    <property name="styleSheet">
-    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.0511364 rgba(16, 93, 140, 255), stop:1 rgba(255, 255, 255, 255));
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.0227273 rgba(64, 70, 70, 255), stop:1 rgba(255, 255, 255, 255));
 font: 87 8pt &quot;Arial Black&quot;;
 font: 87 10pt &quot;Arial Black&quot;;</string>
    </property>
@@ -74,11 +77,14 @@ font: 87 10pt &quot;Arial Black&quot;;</string>
   <widget class="QLineEdit" name="usuarioInput">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>110</y>
+     <x>110</x>
+     <y>160</y>
      <width>151</width>
      <height>21</height>
     </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="placeholderText">
     <string>Ingresa tu usuario</string>
@@ -87,21 +93,33 @@ font: 87 10pt &quot;Arial Black&quot;;</string>
   <widget class="QLineEdit" name="usuarioContrasenia">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>150</y>
+     <x>110</x>
+     <y>200</y>
      <width>151</width>
      <height>21</height>
     </rect>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+   <property name="cursorPosition">
+    <number>0</number>
+   </property>
    <property name="placeholderText">
     <string>Ingresa tu contraseña</string>
+   </property>
+   <property name="clearButtonEnabled">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="BtnIngresar">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>210</y>
+     <x>150</x>
+     <y>240</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -117,8 +135,8 @@ font: 87 10pt &quot;Arial Black&quot;;</string>
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>265</y>
-     <width>331</width>
+     <y>325</y>
+     <width>361</width>
      <height>31</height>
     </rect>
    </property>
@@ -132,11 +150,14 @@ font: 87 10pt &quot;Arial Black&quot;;</string>
   <widget class="QLabel" name="contraseniaOlvidada">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>240</y>
+     <x>120</x>
+     <y>280</y>
      <width>131</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(20, 165, 255);</string>
@@ -145,7 +166,41 @@ font: 87 10pt &quot;Arial Black&quot;;</string>
     <string>¿Olvidaste la contraseña?</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>80</y>
+     <width>61</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="Desktop/imagenesPyQt5.qrc">:/logoFerreteria/logoferreteria.png-HD.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>90</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:22pt; font-style:italic; color:#4d73c6;&quot;&gt;Aero&lt;/span&gt;&lt;span style=&quot; font-size:22pt; font-style:italic; color:#f4340d;&quot;&gt;Norte&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="Desktop/imagenesPyQt5.qrc"/>
+ </resources>
  <connections/>
 </ui>

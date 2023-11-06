@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mockupLogin.ui'
+# Form implementation generated from reading ui file '.\mockupLogin.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -19,7 +19,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from Controllers.UsuarioExistente import UsuarioExistenteError
 from Views.AdministradorFerreteria import Administrador
 from Views.empleadoFerreteria import Empleado
-
+from Views.AdministradorFerreteria import Administrador
 
 class Ui_Dialog(object):
     
@@ -28,80 +28,63 @@ class Ui_Dialog(object):
         self.usuario_existe = UsuarioExistenteError()
         self.parent = parent
     
-    
     def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(357, 353)
-        Dialog.setFixedSize(357, 353) 
+        Dialog.setObjectName("Inicio Sesion")
+        Dialog.resize(330, 300)
         self.lbl_inicioSesion = QtWidgets.QLabel(Dialog)
-        self.lbl_inicioSesion.setGeometry(QtCore.QRect(-20, 0, 421, 51))
-        self.lbl_inicioSesion.setStyleSheet("background-color: rgb(183, 200, 238);\n"
+        self.lbl_inicioSesion.setGeometry(QtCore.QRect(-40, 0, 411, 51))
+        self.lbl_inicioSesion.setStyleSheet("background-color: rgb(12, 67, 139);\n"
 "font: 87 14pt \"Arial Black\";\n"
 "color: rgb(243, 243, 243);")
         self.lbl_inicioSesion.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_inicioSesion.setObjectName("lbl_inicioSesion")
         self.lbl_espacioEnBlanco = QtWidgets.QLabel(Dialog)
         self.lbl_espacioEnBlanco.setEnabled(False)
-        self.lbl_espacioEnBlanco.setGeometry(QtCore.QRect(0, 50, 361, 16))
+        self.lbl_espacioEnBlanco.setGeometry(QtCore.QRect(0, 50, 330, 10))
         self.lbl_espacioEnBlanco.setStyleSheet("background-color: rgb(243, 243, 243);")
         self.lbl_espacioEnBlanco.setText("")
         self.lbl_espacioEnBlanco.setObjectName("lbl_espacioEnBlanco")
         self.label_3 = QtWidgets.QLabel(Dialog)
-        self.label_3.setGeometry(QtCore.QRect(0, 60, 361, 271))
-        self.label_3.setMouseTracking(False)
-        self.label_3.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.0227273 rgba(64, 70, 70, 255), stop:1 rgba(255, 255, 255, 255));\n"
+        self.label_3.setGeometry(QtCore.QRect(0, 60, 331, 211))
+        self.label_3.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.0511364 rgba(16, 93, 140, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "font: 87 8pt \"Arial Black\";\n"
 "font: 87 10pt \"Arial Black\";")
         self.label_3.setText("")
         self.label_3.setObjectName("label_3")
         self.usuarioInput = QtWidgets.QLineEdit(Dialog)
-        self.usuarioInput.setGeometry(QtCore.QRect(110, 160, 151, 21))
-        self.usuarioInput.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.usuarioInput.setGeometry(QtCore.QRect(90, 110, 151, 21))
         self.usuarioInput.setObjectName("usuarioInput")
         self.usuarioContrasenia = QtWidgets.QLineEdit(Dialog)
-        self.usuarioContrasenia.setGeometry(QtCore.QRect(110, 200, 151, 21))
-        self.usuarioContrasenia.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.usuarioContrasenia.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.usuarioContrasenia.setCursorPosition(0)
-        self.usuarioContrasenia.setClearButtonEnabled(True)
+        self.usuarioContrasenia.setGeometry(QtCore.QRect(90, 150, 151, 21))
         self.usuarioContrasenia.setObjectName("usuarioContrasenia")
+        self.usuarioContrasenia.setEchoMode(QtWidgets.QLineEdit.Password)
         self.BtnIngresar = QtWidgets.QPushButton(Dialog)
-        self.BtnIngresar.setGeometry(QtCore.QRect(150, 240, 75, 23))
+        self.BtnIngresar.setGeometry(QtCore.QRect(130, 210, 75, 23))
         self.BtnIngresar.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.0511364 rgba(16, 93, 140, 255), stop:1 rgba(255, 255, 255, 255));")
         self.BtnIngresar.setObjectName("BtnIngresar")
+        self.BtnIngresar.clicked.connect(self.ObtenerDatos)
         self.lbl_alertaUsuarioContrasenia = QtWidgets.QLabel(Dialog)
-        self.lbl_alertaUsuarioContrasenia.setGeometry(QtCore.QRect(0, 325, 361, 31))
+        self.lbl_alertaUsuarioContrasenia.setGeometry(QtCore.QRect(0, 265, 331, 31))
         self.lbl_alertaUsuarioContrasenia.setStyleSheet("background-color: rgb(253, 253, 253);")
         self.lbl_alertaUsuarioContrasenia.setText("")
         self.lbl_alertaUsuarioContrasenia.setObjectName("lbl_alertaUsuarioContrasenia")
         self.contraseniaOlvidada = QtWidgets.QLabel(Dialog)
-        self.contraseniaOlvidada.setGeometry(QtCore.QRect(120, 280, 131, 16))
-        self.contraseniaOlvidada.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.contraseniaOlvidada.setGeometry(QtCore.QRect(110, 240, 131, 16))
         self.contraseniaOlvidada.setStyleSheet("color: rgb(20, 165, 255);")
         self.contraseniaOlvidada.setObjectName("contraseniaOlvidada")
-        self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(280, 80, 61, 51))
-        self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap(":/logoFerreteria/logoferreteria.png-HD.png"))
-        self.label.setScaledContents(True)
-        self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(Dialog)
-        self.label_2.setGeometry(QtCore.QRect(120, 90, 141, 41))
-        self.label_2.setObjectName("label_2")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.lbl_inicioSesion.setText(_translate("Dialog", "Inicio de Sesión"))
-        self.usuarioInput.setPlaceholderText(_translate("Dialog", "Ingresa tu usuario"))
-        self.usuarioContrasenia.setPlaceholderText(_translate("Dialog", "Ingresa tu contraseña"))
-        self.BtnIngresar.setText(_translate("Dialog", "Ingresar"))
-        self.BtnIngresar.clicked.connect(self.ObtenerDatos)
-        self.contraseniaOlvidada.setText(_translate("Dialog", "¿Olvidaste la contraseña?"))
-        self.label_2.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:22pt; font-style:italic; color:#4d73c6;\">Aero</span><span style=\" font-size:22pt; font-style:italic; color:#f4340d;\">Norte</span></p></body></html>"))
+        Dialog.setWindowTitle(_translate("Inicio Sesion", "Inicio Sesion"))
+        self.lbl_inicioSesion.setText(_translate("Inicio Sesion", "Inicio de Sesión"))
+        self.usuarioInput.setPlaceholderText(_translate("Inicio Sesion", "Ingresa tu usuario"))
+        self.usuarioContrasenia.setPlaceholderText(_translate("Inicio Sesion", "Ingresa tu contraseña"))
+        self.BtnIngresar.setText(_translate("Inicio Sesion", "Ingresar"))
+        self.contraseniaOlvidada.setText(_translate("Inicio Sesion", "¿Olvidaste la contraseña?"))
+
 
 
     def ObtenerDatos(self):
@@ -121,15 +104,73 @@ class Ui_Dialog(object):
             self.lbl_alertaUsuarioContrasenia.setStyleSheet('background:tomato;color:white')
 
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-from Recursos.imagenesPyQt5_rc import *
 
 
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     Dialog = QtWidgets.QDialog()
-#     ui = Ui_Dialog()
-#     ui.setupUi(Dialog)
-#     Dialog.show()
-#     sys.exit(app.exec_())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # def ObtenerDatos(self):
+    #     usuario = str(self.usuarioInput.text())
+    #     contraseña = str(self.usuarioContrasenia.text())
+    #     try:
+    #         self.login_controller.log_in(usuario,contraseña)
+    #         self.lbl_alertaUsuarioContrasenia.setText(f'Bienvenido, {usuario}')
+    #         self.lbl_alertaUsuarioContrasenia.setStyleSheet('background:green;color:white')
+    #     except UsuarioExistenteError as e:
+    #         self.lbl_alertaUsuarioContrasenia.setText(str(e))
+    #         self.lbl_alertaUsuarioContrasenia.setStyleSheet('background:tomato;color:white')
+        
