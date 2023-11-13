@@ -10,7 +10,7 @@ from Controllers.UsuarioExistente import UsuarioExistenteError
 from Models.User import User
 from Models.User_login import User_login
 from Database.Conection import connection
-from Controllers.UsuarioExistente import UsuarioExistenteError
+
 
 
 

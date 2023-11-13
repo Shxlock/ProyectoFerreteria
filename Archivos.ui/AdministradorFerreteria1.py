@@ -15,7 +15,7 @@ class Administrador(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(811, 831)
- 
+
         self.scrollArea_2 = QtWidgets.QScrollArea(Dialog)
         self.scrollArea_2.setGeometry(QtCore.QRect(90, 510, 321, 131))
         self.scrollArea_2.setWidgetResizable(True)

@@ -6,7 +6,7 @@ from Views.mockupLogin import *
 
 
 if __name__ == "__main__":
-    import sys
+    # import sys
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
     ui = Ui_Dialog(parent=Dialog)
