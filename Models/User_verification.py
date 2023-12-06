@@ -16,7 +16,7 @@ class User_verification():
     def getData(self,usuario):
         return self.c.execute('SELECT salt FROM user WHERE user=%s', (usuario,))
     
-    def agregar(self, usuario, contraseña_encriptada, salt, rol):
-        self.c.execute('INSERT INTO user (user, password, salt,rol) VALUES (%s, %s, %s,%s)',
-                    (usuario, contraseña_encriptada, salt,rol))
+    def agregar(self, usuario, contraseña_encriptada, salt, rol,cedula):
+        self.c.execute('INSERT INTO user (user, password, salt,rol,cedula_usuario) VALUES (%s, %s, %s,%s,%s)',
+                    (usuario, contraseña_encriptada, salt,rol,cedula))
         self.conn.commit()

@@ -22,10 +22,9 @@ from Views.empleadoFerreteria import Empleado
 
 
 class Ui_Dialog(object):
-    
-    def __init__(self,parent=None):
-        self.login_controller = LogInController()
-        self.usuario_existe = UsuarioExistenteError()
+    def __init__(self, parent=None, login_controller=None, usuario_existe=None):
+        self.login_controller = login_controller
+        self.usuario_existe = usuario_existe
         self.parent = parent
     
     

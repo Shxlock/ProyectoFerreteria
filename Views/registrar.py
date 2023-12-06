@@ -16,14 +16,17 @@ sys.path.append(myDir)
 
 from Controllers.RegistrarControlador import Registrar
 from Controllers.UsuarioExistente import UsuarioExistenteError
+from Models.User import User
+from Database.Conection import connection
 
 
-class Ui_Dialog(object):
+class RegistrarEmpleado(object):
     
     def __init__(self):
+        # Aquí puedes realizar inicializaciones si es necesario
         self.registro_controlador = Registrar()
         self.usuario_existe = UsuarioExistenteError()
-    
+        self.user = User(connection())
     def setupUi(self, Dialog):
         Dialog.setObjectName("AeroNorte")
         Dialog.resize(355, 352)
@@ -100,6 +103,7 @@ class Ui_Dialog(object):
     def obtenerDatos(self):
         usuario = str(self.inputUsuario.text())
         contraseña = str(self.inputContrasenia.text())
+        
         try:
             self.registro_controlador.Datos(usuario,contraseña)
             self.lbl_alertaUsuarioContrasenia_2.setText("Usuario registrado correctamente.")

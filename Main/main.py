@@ -6,10 +6,14 @@ from Views.mockupLogin import *
 
 
 if __name__ == "__main__":
-    # import sys
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog(parent=Dialog)
+    login_controller = LogInController()
+    usuario_existe = UsuarioExistenteError()
+    ui = Ui_Dialog(parent=Dialog, login_controller=login_controller, usuario_existe=usuario_existe)
     ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec_())
+    
+    
+    

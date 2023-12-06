@@ -15,14 +15,23 @@ sys.path.append(myDir)
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWidgets
-from PyQt5.QtCore import QPropertyAnimation
+from PyQt5.QtCore import QPropertyAnimation,QDate
+from PyQt5.QtGui import QIntValidator
+
+
 from Controllers.controladorPrincipal import PrincipalControlador
 from Controllers.controladorVentas import VentaControlador
-
+from Controllers.controladorFacturas import FacturaControlador
+from Views.opcionesEmpleados import OpcionesEmpleados
+from Views.opcionesProductos import OpcionesProductos
+from Views.opcionesProveedores import OpcionesProveedores
+        
 class Administrador(object):
     def __init__(self):
         self.principal_controlador = PrincipalControlador(self)
         self.ventas = VentaControlador(self)
+        self.facturas = FacturaControlador(self)
+        
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1017, 826)
@@ -45,7 +54,7 @@ class Administrador(object):
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.frame = QtWidgets.QFrame(self.frame_encabezado)
-        self.frame.setMinimumSize(QtCore.QSize(200, 90))
+        self.frame.setMinimumSize(QtCore.QSize(200, 70))
         self.frame.setMaximumSize(QtCore.QSize(3000, 16777215))
         self.frame.setStyleSheet("background-color: rgb(231, 231, 231);\n"
 "")
@@ -72,8 +81,8 @@ class Administrador(object):
         self.nombre_ferreteria.setObjectName("nombre_ferreteria")
         self.gridLayout_3.addWidget(self.nombre_ferreteria, 0, 1, 1, 1)
         self.logo = QtWidgets.QLabel(self.frame)
-        self.logo.setMinimumSize(QtCore.QSize(100, 0))
-        self.logo.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.logo.setMinimumSize(QtCore.QSize(100, 10))
+        self.logo.setMaximumSize(QtCore.QSize(100, 40))
         self.logo.setText("")
         self.logo.setPixmap(QtGui.QPixmap(":/logoFerreteria/logoferreteria.png-HD.png"))
         self.logo.setScaledContents(True)
@@ -177,10 +186,12 @@ class Administrador(object):
         self.btnProductos.setMaximumSize(QtCore.QSize(60, 16777215))
         self.btnProductos.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.btnProductos.setObjectName("btnProductos")
+        self.btnProductos.clicked.connect(self.abrirProductos)
         self.horizontalLayout_5.addWidget(self.btnProductos)
         self.btnProveedores = QtWidgets.QPushButton(self.frame_5)
         self.btnProveedores.setMaximumSize(QtCore.QSize(70, 16777215))
         self.btnProveedores.setObjectName("btnProveedores")
+        self.btnProveedores.clicked.connect(self.abrirProveedores)
         self.horizontalLayout_5.addWidget(self.btnProveedores)
         self.btnHistorialVentas = QtWidgets.QPushButton(self.frame_5)
         self.btnHistorialVentas.setMaximumSize(QtCore.QSize(90, 16777215))
@@ -189,6 +200,7 @@ class Administrador(object):
         self.btnEmpleados = QtWidgets.QPushButton(self.frame_5)
         self.btnEmpleados.setMaximumSize(QtCore.QSize(70, 16777215))
         self.btnEmpleados.setObjectName("btnEmpleados")
+        self.btnEmpleados.clicked.connect(self.abrirVentana)
         self.horizontalLayout_5.addWidget(self.btnEmpleados)
         self.btnClientes = QtWidgets.QPushButton(self.frame_5)
         self.btnClientes.setMaximumSize(QtCore.QSize(45, 16777215))
@@ -200,20 +212,19 @@ class Administrador(object):
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName("frame_6")
-        self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.frame_6)
-        self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_6.setSpacing(9)
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
+        self.gridLayout_4 = QtWidgets.QGridLayout(self.frame_6)
+        self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_4.setObjectName("gridLayout_4")
         self.lblBuscar = QtWidgets.QLabel(self.frame_6)
         self.lblBuscar.setMaximumSize(QtCore.QSize(93, 16777215))
         self.lblBuscar.setObjectName("lblBuscar")
-        self.horizontalLayout_6.addWidget(self.lblBuscar)
+        self.gridLayout_4.addWidget(self.lblBuscar, 0, 0, 1, 1)
         self.buscarProducto = QtWidgets.QLineEdit(self.frame_6)
         self.buscarProducto.setMinimumSize(QtCore.QSize(100, 0))
         self.buscarProducto.setMaximumSize(QtCore.QSize(300, 16777215))
         self.buscarProducto.setObjectName("buscarProducto")
         self.buscarProducto.textChanged.connect(self.buscador)
-        self.horizontalLayout_6.addWidget(self.buscarProducto)
+        self.gridLayout_4.addWidget(self.buscarProducto, 0, 1, 1, 1)
         self.verticalLayout_5.addWidget(self.frame_6)
         self.frame_7 = QtWidgets.QFrame(self.frame_superior)
         self.frame_7.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -324,7 +335,6 @@ class Administrador(object):
         self.btnActualizar.clicked.connect(self.principal_controlador.actualizar)
         self.verticalLayout_7.addWidget(self.btnActualizar)
         self.tablaProductos = QtWidgets.QTableWidget(self.frame_2)
-        #self.tablaProductos.setRowCount(10)
         self.tablaProductos.setObjectName("tablaProductos")
         self.tablaProductos.setColumnCount(7)
         item = QtWidgets.QTableWidgetItem()
@@ -355,7 +365,6 @@ class Administrador(object):
         self.verticalLayout_8.setSpacing(0)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.tablaVentas = QtWidgets.QTableWidget(self.frame_3)
-        self.tablaVentas.setRowCount(10)
         self.tablaVentas.setObjectName("tablaVentas")
         self.tablaVentas.setColumnCount(5)
         item = QtWidgets.QTableWidgetItem()
@@ -370,6 +379,12 @@ class Administrador(object):
         self.tablaVentas.setHorizontalHeaderItem(4, item)
         self.tablaVentas.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
         self.verticalLayout_8.addWidget(self.tablaVentas)
+        self.btnEliminarVenta = QtWidgets.QPushButton(self.frame_3)
+        self.btnEliminarVenta.setMinimumSize(QtCore.QSize(120, 20))
+        self.btnEliminarVenta.setMaximumSize(QtCore.QSize(120, 10))
+        self.btnEliminarVenta.setObjectName("btnEliminarVenta")
+        self.btnEliminarVenta.clicked.connect(self.ventas.borrarFila)
+        self.verticalLayout_8.addWidget(self.btnEliminarVenta)
         self.verticalLayout_4.addWidget(self.frame_3)
         self.frame_4 = QtWidgets.QFrame(self.frame_seccion_ventas)
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -470,6 +485,10 @@ class Administrador(object):
         self.label_55.setStyleSheet("margin-bottom:12px;")
         self.label_55.setObjectName("label_55")
         self.verticalLayout_12.addWidget(self.label_55)
+        self.label_2 = QtWidgets.QLabel(self.frame_15)
+        self.label_2.setStyleSheet("margin-bottom: 15px;")
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout_12.addWidget(self.label_2)
         self.label_56 = QtWidgets.QLabel(self.frame_15)
         self.label_56.setStyleSheet("margin-bottom:14px;")
         self.label_56.setObjectName("label_56")
@@ -485,25 +504,41 @@ class Administrador(object):
         self.frame_16.setObjectName("frame_16")
         self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.frame_16)
         self.verticalLayout_13.setContentsMargins(-1, 0, -1, 0)
-        self.verticalLayout_13.setObjectName("verticalLayout_13")
+        self.verticalLayout_13.setObjectName("verticalLayout_13")         
         self.fechaFactura = QtWidgets.QDateEdit(self.frame_16)
         self.fechaFactura.setObjectName("fechaFactura")
+        self.fechaFactura.setCalendarPopup(True)
+        self.fechaFactura.setDate(QDate.currentDate())
+        self.fechaFactura.calendarWidget().setEnabled(False)
+        self.fechaFactura.setDisplayFormat("yyyy-MM-dd")
         self.verticalLayout_13.addWidget(self.fechaFactura)
         self.documento = QtWidgets.QLineEdit(self.frame_16)
         self.documento.setObjectName("documento")
+        self.int_validator = QIntValidator()
+        self.documento.setValidator(self.int_validator)
         self.verticalLayout_13.addWidget(self.documento)
         self.tipoDePago = QtWidgets.QComboBox(self.frame_16)
         self.tipoDePago.setObjectName("tipoDePago")
+        self.tipoDePago.addItem("Efectivo")
+        self.tipoDePago.addItem("Tarjeta")
+        self.tipoDePago.addItem("Otra/No sabe No responde")
         self.verticalLayout_13.addWidget(self.tipoDePago)
         self.vendedor = QtWidgets.QLineEdit(self.frame_16)
         self.vendedor.setObjectName("vendedor")
+        self.vendedor.setValidator(self.int_validator)
         self.verticalLayout_13.addWidget(self.vendedor)
+        self.email_factura = QtWidgets.QLineEdit(self.frame_16)
+        self.email_factura.setObjectName("email")
+        self.verticalLayout_13.addWidget(self.email_factura)
         self.cliente = QtWidgets.QLineEdit(self.frame_16)
         self.cliente.setObjectName("cliente")
         self.verticalLayout_13.addWidget(self.cliente)
         self.turnoVendedor = QtWidgets.QComboBox(self.frame_16)
         self.turnoVendedor.setStyleSheet("")
         self.turnoVendedor.setObjectName("turnoVendedor")
+        self.turnoVendedor.addItem("Mañana")
+        self.turnoVendedor.addItem("Tarde")
+        self.turnoVendedor.addItem("Noche")
         self.verticalLayout_13.addWidget(self.turnoVendedor)
         self.horizontalLayout_11.addWidget(self.frame_16)
         self.verticalLayout_11.addWidget(self.frame_13)
@@ -518,6 +553,7 @@ class Administrador(object):
         self.btnGenerarFactura.setMinimumSize(QtCore.QSize(30, 39))
         self.btnGenerarFactura.setMaximumSize(QtCore.QSize(90, 40))
         self.btnGenerarFactura.setObjectName("btnGenerarFactura")
+        self.btnGenerarFactura.clicked.connect(self.facturas.validarCampos)
         self.horizontalLayout_12.addWidget(self.btnGenerarFactura)
         self.verticalLayout_11.addWidget(self.frame_14)
         self.verticalLayout_10.addWidget(self.frame_12)
@@ -528,7 +564,7 @@ class Administrador(object):
         self.frame_principal.raise_()
         self.frame_encabezado.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
-
+        self.principal_controlador.actualizar()
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -579,6 +615,8 @@ class Administrador(object):
         item.setText(_translate("MainWindow", "Precio Unitario"))
         item = self.tablaVentas.horizontalHeaderItem(4)
         item.setText(_translate("MainWindow", "Cantidad"))
+        
+        self.btnEliminarVenta.setText(_translate("MainWindow", "Eliminar"))
         self.label_43.setText(_translate("MainWindow", "Valor Venta"))
         self.label_44.setText(_translate("MainWindow", "Descuento"))
         self.label_45.setText(_translate("MainWindow", "Sub Total"))
@@ -587,11 +625,11 @@ class Administrador(object):
         self.label_53.setText(_translate("MainWindow", "Documento"))
         self.label_54.setText(_translate("MainWindow", "Tipo de pago"))
         self.label_55.setText(_translate("MainWindow", "Vendedor"))
+        self.label_2.setText(_translate("MainWindow", "Email"))
         self.label_56.setText(_translate("MainWindow", "Cliente"))
         self.label_57.setText(_translate("MainWindow", "Turno"))
         self.btnGenerarFactura.setText(_translate("MainWindow", "Generar Factura"))
-
-
+        
     def menu(self):    
         if True:
             width = self.frame_menu.width()
@@ -600,14 +638,12 @@ class Administrador(object):
                 extender = 300
             else:
                 extender = normal
-        
             self.animacion = QPropertyAnimation(self.frame_menu, b'minimumWidth')
             self.animacion.setDuration(300)
             self.animacion.setStartValue(width)
             self.animacion.setEndValue(extender)
             self.animacion.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
             self.animacion.start()         
-        #Es resposive :)
         
     def buscador(self):    
         palabra = self.buscarProducto.text().lower() 
@@ -615,26 +651,31 @@ class Administrador(object):
         if controlador:
             print("Se ha encontrado")
         else:
-            print("Hasta la proxima")
+            print("No se encontró")
             
-    def venta(self):
+    def venta(self,cantidad):
         codigo = self.codigoProducto.text()
-        codigo = int(codigo)
         cantidad = self.cantidadProducto.text()
         controlador = self.ventas.agregar_venta(codigo,cantidad)
         if controlador:
-            print("Vas bien") 
-            
-            
+            print("Vas bien")         
+
+    def abrirVentana(self):
+        self.principal_controlador.abrirVentana(OpcionesEmpleados)
+        
+    def abrirProductos(self):
+        self.principal_controlador.abrirProductos(OpcionesProductos)
+        
+    def abrirProveedores(self):
+        self.principal_controlador.abrirProveedores(OpcionesProveedores)
+        
 from Recursos.imagenesPyQt5_rc import *
 
-
-
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     MainWindow = QtWidgets.QMainWindow()
-#     ui = Ui_MainWindow()
-#     ui.setupUi(MainWindow)
-#     MainWindow.show()
-#     sys.exit(app.exec_())
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Administrador()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())

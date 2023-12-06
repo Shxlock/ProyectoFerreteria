@@ -5,11 +5,24 @@ class Cliente:
             sql = """CREATE TABLE IF NOT EXISTS cliente
             (nit_cliente INT NOT NULL,
             nombre_cliente VARCHAR(90) NOT NULL,
-            apellido_cliente VARCHAR(90) NOT NULL,
-            telefono_cliente INT NOT NULL,
             email_cliente VARCHAR(90) NOT NULL,
             PRIMARY KEY (nit_cliente)
             )"""
 
             cursor.execute(sql)
         self.conn.commit()
+        
+    def insertarDatos(self,datos):
+        with self.conn.cursor() as cursor:
+            consulta = "INSERT INTO cliente (nit_cliente, nombre_cliente, email_cliente) VALUES (%s, %s, %s)"
+            cursor.execute(consulta, datos)
+            self.conn.commit()
+            cursor.close()
+            return "Hecho Cliente"
+        
+    def existeCliente(self, cliente):
+        with self.conn.cursor() as cursor:
+            consulta = """SELECT nit_cliente FROM cliente WHERE nit_cliente = %s"""
+            cursor.execute(consulta, (cliente,))
+            resultado = cursor.fetchone()
+            return resultado is not None
