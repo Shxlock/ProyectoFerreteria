@@ -26,6 +26,11 @@ class OpcionesProductos(object):
         self.int_validator = QIntValidator()
         Dialog.setObjectName("Dialog")
         Dialog.resize(711, 777)
+        Dialog.setFixedSize(711, 777)
+        icon = QtGui.QIcon("Recursos/productos.ico")  # Ruta de la imagen del icono
+        Dialog.setWindowIcon(icon)
+
+
         self.label = QtWidgets.QLabel(Dialog)
         self.label.setGeometry(QtCore.QRect(0, 0, 711, 31))
         self.label.setStyleSheet("background-color: rgb(145, 145, 145);\n"
@@ -296,7 +301,7 @@ class OpcionesProductos(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Opciones Productos", "Opciones Productos"))
         self.label.setText(_translate("Dialog", "Productos"))
         self.label_2.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:12pt;\">Agregar Producto</span></p></body></html>"))
         self.label_3.setText(_translate("Dialog", "Codigo"))

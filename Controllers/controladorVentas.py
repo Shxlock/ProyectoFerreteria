@@ -24,7 +24,10 @@ class VentaControlador():
         self.producto = Producto(connection())
         self.principal = principal      # instancia de la interfaz
         self.validar = ValidarControlador(principal)
-    
+        self.productos = []
+
+
+
     def generar_codigo(self):         # metodo para generar un codigo
         codigo_venta = str(uuid.uuid4())  # usamos la libreria uuid para generar el codigo
         codigo_venta = codigo_venta[:8]   # hacemos que el codigo sea de solo 8 caracteres
@@ -92,6 +95,7 @@ class VentaControlador():
     def calcularPrecio(self):               # metodo para calcular precio
         tabla = self.principal.tablaVentas       
         precios = []                # creamos una lista para guardar los precios
+        
         print("estmoas en el metodo calcularPrecio")
         for row in range(tabla.rowCount()):       # recorremos la tablaVentas
             item_codigo = tabla.item(row, 1)      # en la columna con indice 1, obtenemos el codigo del producto
@@ -101,6 +105,7 @@ class VentaControlador():
                 codigo = int(item_codigo.text()) 
                 precio_unitario = int(item_precio.text())      # convertimos el precio a entero
                 cantidad_producto = int(item_cantidad.text())      # convertimos la cantidad a entero
+                self.productos.append([codigo,precio_unitario,cantidad_producto])
                 precios.append(precio_unitario * cantidad_producto) # añadimos a la lista la multiplicacion de estos dos ultimos
                 self.precios(precios)           # le pasamos la lista al metodo precios
                 

@@ -27,6 +27,9 @@ class OpcionesProveedores(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(711, 468)
+        Dialog.setFixedSize(711, 468) 
+        icon = QtGui.QIcon("Recursos/proveedor.ico")  # Ruta de la imagen del icono
+        Dialog.setWindowIcon(icon)
         self.btnModificarProveedor = QtWidgets.QPushButton(Dialog)
         self.btnModificarProveedor.setGeometry(QtCore.QRect(540, 440, 121, 23))
         self.btnModificarProveedor.setObjectName("btnModificarProveedor")
@@ -180,7 +183,7 @@ class OpcionesProveedores(object):
         self.opciones_proveedor.comboProveedor()
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Opciones Proveedores", "Opciones Proveedores"))
         self.btnModificarProveedor.setText(_translate("Dialog", "Modificar Producto"))
         self.label_16.setText(_translate("Dialog", "Nuevos Valores"))
         self.pushButton_3.setText(_translate("Dialog", "Buscar"))

@@ -174,8 +174,12 @@ class ProductoControlador():
             self.opcionesProductos.nuevo_nombre_producto_2.setValue(int(productos[1]))
             self.opcionesProductos.nueva_descripcion_producto.setPlainText(str(productos[2]))
             self.opcionesProductos.nuevo_precio_producto.setText(str(productos[3]))
-            self.modiCategoria()
-            self.modiProveedor()
+            categoria = str(productos[4])
+            proveedor = str(productos[5])
+            print(categoria)
+            print(proveedor)
+            self.modiCategoria(categoria)
+            self.modiProveedor(proveedor)
             self.opcionesProductos.nuevo_nombre_producto.setReadOnly(False)
             self.opcionesProductos.nuevo_nombre_producto_2.setReadOnly(False)
             self.opcionesProductos.nueva_descripcion_producto.setReadOnly(False) 
@@ -232,18 +236,24 @@ class ProductoControlador():
             self.opcionesProductos.producto_a_eliminar.addItem(str(producto[0]))
         self.opcionesProductos.producto_a_eliminar.setCurrentIndex(0)
     
-    def modiCategoria(self):
-        self.opcionesProductos.nuevo_id_categoria_producto.clear()
+        
+    def modiCategoria(self, categoria):
         categorias = self.categoria.obtenerIdsCategoria()
-        self.opcionesProductos.nuevo_id_categoria_producto.addItem("Seleccionar categoria")
-        for categoria in categorias:
-            self.opcionesProductos.nuevo_id_categoria_producto.addItem(str(categoria[0]))
-        self.opcionesProductos.nuevo_id_categoria_producto.setCurrentIndex(0)
+        print("""--------\n \n ENTRASTE EN PROVEEDOR \n \n""")
+        print("Categorías disponibles:", categorias)  
+        print("Categoria parametro:", categoria)  
+        self.opcionesProductos.nuevo_id_categoria_producto.clear()
+        for cat in categorias:
+            self.opcionesProductos.nuevo_id_categoria_producto.addItem(str(cat[0]))
+        self.opcionesProductos.nuevo_id_categoria_producto.setCurrentText(str(categoria))  
 
-    def modiProveedor(self):
-        self.opcionesProductos.nuevo_nit_proveedor_producto.clear()
+    def modiProveedor(self, proveedor):
         proveedores = self.proveedor.obtenerIdProveedores()
-        self.opcionesProductos.nuevo_nit_proveedor_producto.addItem("Seleccionar proveedor")
-        for proveedor in proveedores:
-            self.opcionesProductos.nuevo_nit_proveedor_producto.addItem(str(proveedor[0]))
-        self.opcionesProductos.nuevo_nit_proveedor_producto.setCurrentIndex(0)
+        print("""--------\n \n ENTRASTE EN PROVEEDOR \n \n""")
+        print("Proveedores disponibles:", proveedores)  
+        print("Proveedor parametro:", proveedor) 
+        self.opcionesProductos.nuevo_nit_proveedor_producto.clear()
+        for prov in proveedores:
+            self.opcionesProductos.nuevo_nit_proveedor_producto.addItem(str(prov[0]))
+        self.opcionesProductos.nuevo_nit_proveedor_producto.setCurrentText(str(proveedor))
+

@@ -65,3 +65,14 @@ class PrincipalControlador():
         self.Dialog.ui.setupUi(self.Dialog)           # llamamos al metodo setupUi de la clase
         self.Dialog.show()                         # mostramos la ventana
         
+    def abrirClientes(self,Cliente):
+        self.Dialog = QtWidgets.QMainWindow()           
+        self.Dialog.ui = Cliente()       
+        self.Dialog.ui.setupUi(self.Dialog)          
+        self.Dialog.show()      
+
+    def abrirHistorialVentas(self,HistorialVentas):
+        self.Dialog = QtWidgets.QMainWindow()           
+        self.Dialog.ui = HistorialVentas()       
+        self.Dialog.ui.setupUi(self.Dialog)          
+        self.Dialog.show()   

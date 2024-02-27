@@ -20,10 +20,6 @@ class Factura:
                 )"""
 
             cursor.execute(sql)
-            
-           
-            
-            
         self.conn.commit()
         
     def insertarDatos(self,datos):

@@ -23,10 +23,16 @@ class OpcionesEmpleados(object):
     def __init__(self):
         self.controlador_empleados = EmpleadoControlador(self)
         
+        
+
+
     def setupUi(self,Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(720, 630)
         Dialog.setFixedSize(720, 630)
+        icon = QtGui.QIcon("Recursos/empleado.ico")  # Ruta de la imagen del icono
+        Dialog.setWindowIcon(icon)
+
         self.label = QtWidgets.QLabel(Dialog)
         self.label.setGeometry(QtCore.QRect(0, 0, 721, 31))
         self.label.setStyleSheet("background-color: rgb(145, 145, 145);\n"
@@ -192,7 +198,7 @@ class OpcionesEmpleados(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Opciones Empleado", "Opciones Empleado"))
         self.label.setText(_translate("Dialog", "Empleados"))
         self.btnModificarEmpleado.setText(_translate("Dialog", "Modificar Empleado"))
         self.label_11.setText(_translate("Dialog", "Cedula"))

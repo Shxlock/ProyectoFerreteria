@@ -25,19 +25,27 @@ from Controllers.controladorFacturas import FacturaControlador
 from Views.opcionesEmpleados import OpcionesEmpleados
 from Views.opcionesProductos import OpcionesProductos
 from Views.opcionesProveedores import OpcionesProveedores
-        
+from Views.historialVentas import HistorialVentas
+from Views.clientes import Cliente
+
+
 class Administrador(object):
     def __init__(self):
         self.principal_controlador = PrincipalControlador(self)
         self.ventas = VentaControlador(self)
         self.facturas = FacturaControlador(self)
         
+
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1017, 826)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/logoFerreteria/logoferreteria.png-HD.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setSpacing(0)
@@ -196,6 +204,7 @@ class Administrador(object):
         self.btnHistorialVentas = QtWidgets.QPushButton(self.frame_5)
         self.btnHistorialVentas.setMaximumSize(QtCore.QSize(90, 16777215))
         self.btnHistorialVentas.setObjectName("btnHistorialVentas")
+        self.btnHistorialVentas.clicked.connect(self.abrirHistorialVentas)
         self.horizontalLayout_5.addWidget(self.btnHistorialVentas)
         self.btnEmpleados = QtWidgets.QPushButton(self.frame_5)
         self.btnEmpleados.setMaximumSize(QtCore.QSize(70, 16777215))
@@ -205,6 +214,7 @@ class Administrador(object):
         self.btnClientes = QtWidgets.QPushButton(self.frame_5)
         self.btnClientes.setMaximumSize(QtCore.QSize(45, 16777215))
         self.btnClientes.setObjectName("btnClientes")
+        self.btnClientes.clicked.connect(self.abrirClientes)
         self.horizontalLayout_5.addWidget(self.btnClientes)
         self.verticalLayout_5.addWidget(self.frame_5)
         self.frame_6 = QtWidgets.QFrame(self.frame_superior)
@@ -568,6 +578,9 @@ class Administrador(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        
+
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -669,6 +682,14 @@ class Administrador(object):
     def abrirProveedores(self):
         self.principal_controlador.abrirProveedores(OpcionesProveedores)
         
+    def abrirClientes(self):
+        self.principal_controlador.abrirClientes(Cliente) 
+        print("Hiciste click en clientes")
+ 
+    def abrirHistorialVentas(self):
+        self.principal_controlador.abrirHistorialVentas(HistorialVentas)
+        print("Hiciste click en historial")
+
 from Recursos.imagenesPyQt5_rc import *
 
 if __name__ == "__main__":

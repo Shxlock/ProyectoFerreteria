@@ -12,6 +12,16 @@ class Cliente:
             cursor.execute(sql)
         self.conn.commit()
         
+    def obtenerClientes(self):
+        with self.conn.cursor() as cursor:
+            consulta = "SELECT * FROM cliente"
+            cursor.execute(consulta)
+            consulta = cursor.fetchall()
+            self.conn.commit()
+            cursor.close()
+            print(consulta)
+            return consulta 
+
     def insertarDatos(self,datos):
         with self.conn.cursor() as cursor:
             consulta = "INSERT INTO cliente (nit_cliente, nombre_cliente, email_cliente) VALUES (%s, %s, %s)"
