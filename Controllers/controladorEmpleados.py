@@ -36,10 +36,11 @@ class EmpleadoControlador():
                     apellido = str(apellido)
                     direccion = str(direccion)
                     empleado = [cedula,nombre,telefono,email,apellido,direccion]
-                    self.crearEmpleado(empleado)
+                    
                     self.abrir_ventana(RegistrarEmpleado)
                     #self.EnviarDatos(cedula,nombre,telefono,email,apellido,direccion)
-                    self.validar.mostrarMensaje(self.validar.MENSAJE_TODO_CORRECTO,self.validar.MENSAJE_TODO_CORRECTO) 
+                    #self.validar.mostrarMensaje(self.validar.MENSAJE_TODO_CORRECTO,self.validar.MENSAJE_TODO_CORRECTO) 
+                    self.crearEmpleado(empleado)
                 else:
                     self.validar.mostrarMensaje(self.validar.MENSAJE_EMAIL_NO_VALIDO,self.validar.MENSAJE_EMAIL_NO_VALIDO)
             else:

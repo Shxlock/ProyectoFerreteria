@@ -5,6 +5,8 @@ sys.path.append(myDir)
 
 from Database.Conection import connection
 from Controllers.controladorValidar import ValidarControlador
+from Controllers.controladorLimpiar import ControladorLimpiar
+from Controllers.controladorPrincipal import PrincipalControlador
 from Models.categoriaProducto import CategoriaProducto
 from Models.proveedor import Proveedor
 from Models.producto import Producto
@@ -13,10 +15,10 @@ class ProductoControlador():
     def __init__(self, OpcionesProductos): # recibe la interfaz
         self.validar = ValidarControlador(OpcionesProductos) # instancias
         self.opcionesProductos = OpcionesProductos
+        self.limpiar = ControladorLimpiar()
         self.categoria = CategoriaProducto(connection()) # instancias de modelos, le pasa la conexion a la base de datos
         self.proveedor = Proveedor(connection())
         self.producto = Producto(connection())
-        
     # CRUD CATEGORIAS
         
     def agregarCategoria(self,id,nombre,descripcion): # metodo para agregar una categoria
@@ -129,22 +131,25 @@ class ProductoControlador():
                     categoria = int(categoria)
                     proveedor = int(proveedor)
                     print(fecha_vencimiento)
-                    if fecha_vencimiento == "2000-01-01":
+                    if fecha_vencimiento == "2000-01-01" or fecha_vencimiento == "":
                         print("todo perfecto")
                         fecha_vencimiento = None
                         enviar = [codigo,nombre,cantidad,descripcion,precio,categoria,proveedor,fecha_vencimiento]
                         self.producto.agregarProducto(enviar)
+                        self.validar.mostrarMensaje("Producto Agregado!", "Producto Agregado")
+                        self.limpiar.limpiar(self.opcionesProductos.codigo_producto,self.opcionesProductos.nombre_producto,self.opcionesProductos.cantidad_producto,self.opcionesProductos.descripcion_producto,self.opcionesProductos.precio_producto,self.opcionesProductos.fecha_vencimiento)
                     else:
                         print("todo correcto")
                         enviar = [codigo,nombre,cantidad,descripcion,precio,categoria,proveedor,fecha_vencimiento]
                         self.producto.agregarProducto(enviar)
-                        
+                        self.validar.mostrarMensaje("Producto Agregado!", "Producto Agregado")
+                        self.limpiar.limpiar(self.opcionesProductos.codigo_producto,self.opcionesProductos.nombre_producto,self.opcionesProductos.cantidad_producto,self.opcionesProductos.descripcion_producto,self.opcionesProductos.precio_producto,self.opcionesProductos.fecha_vencimiento)
                 else:
-                    print("CATEGONT")
+                    self.validar.mostrarMensaje("Ingresa una categoria","Ingresa categoria")
             else:
-                print("CODIGON'T")
+                self.validar.mostrarMensaje("Ingresa un codigo de 4 o menos digitos","Ingresa un codigo")
         else:
-            print("NOT OK")
+            self.validar.mostrarMensaje("Datos no válidos","Datos no válidos")
         
         
     def eliminarProducto(self):
@@ -153,19 +158,26 @@ class ProductoControlador():
             codigo = int(codigo)
             print(codigo)
             self.producto.eliminarProducto(codigo)
+            self.validar.mostrarMensaje("Producto eliminado exitosamente","Producto Eliminado")
+            
         else:
             print("selecciona un producto")
-        
+            self.validar.mostrarMensaje("Selecciona el producto","Selecciona el producto")
+
     def modificarProducto(self):
         codigo = self.opcionesProductos.codigo_modificar_producto.text()
-        print(codigo)
-        if codigo is not None or "":
+        print("Este es el codigo "+codigo)
+        if codigo is not None and codigo != "":
             codigo = int(codigo)
             productos = self.producto.buscarProducto(codigo)
             print(productos)
             self.modiProducto(codigo,productos)
+            
         else:
+            self.validar.mostrarMensaje("Ingresa un codigo","Ingresa un codigo")
             print("Ingresa un codigo correcto")
+            
+
             
     def modiProducto(self,codigo,productos):
         if productos:
@@ -189,6 +201,7 @@ class ProductoControlador():
             self.opcionesProductos.nueva_fecha_vencimiento.setReadOnly(False) 
             self.opcionesProductos.btnModificar.setEnabled(True) 
         else:
+            self.validar.mostrarMensaje("Rellena todos los campos","Rellena todos los campos")
             print("Proveedor no encontrado o datos vacíos") 
             
     def cambiarDatos(self):
@@ -216,16 +229,19 @@ class ProductoControlador():
                         fecha_vencimiento = None
                         enviar = [nombre,cantidad,descripcion,precio,categoria,proveedor,fecha_vencimiento,codigo]
                         self.producto.modificarProducto(enviar)
-                        print("todo perfecto")
+                        self.validar.mostrarMensaje("Producto modificado exitosamente","Producto modificado")
                     else:
                         enviar = [nombre,cantidad,descripcion,precio,categoria,proveedor,fecha_vencimiento,codigo]
                         self.producto.modificarProducto(enviar)
-                        print("todo perfe")
+                        self.validar.mostrarMensaje("Producto modificado exitosamente","Producto modificado")
                 else:
                     print("ingresa una cantidad valida")
+                    self.validar.mostrarMensaje("Ingresa una cantidad válida","Cantidad NO válida")
             else:
                 print("ingresa una categoria y proveedor")
+                self.validar.mostrarMensaje("Ingresa una categoria y proveedor válida","Categoria y Proveedor NO válidos")
         else:
+            self.validar.mostrarMensaje("Verifica que los datos ingresados sean válidos","Datos NO válidos")
             print("not ok")
 
     def productos(self):

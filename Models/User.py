@@ -13,7 +13,7 @@ class User:
                 rol VARCHAR(50) NOT NULL,
                 cedula_usuario INT NOT NULL,
                 PRIMARY KEY (user_id),
-                FOREIGN KEY (cedula_usuario) REFERENCES empleado(cedula_empleado)
+                FOREIGN KEY (cedula_usuario) REFERENCES empleado(cedula_empleado) ON DELETE CASCADE
                 )""" # empezamos la consulta con 'CREATE TABLE IF NOT EXISTS' lo cual nos ayuda a no crear nuevamente la tabla, esta linea se encarga de que si la tabla ya existe omite todo el proceso de la creacion
             cursor.execute(sql)
         self.conn.commit()

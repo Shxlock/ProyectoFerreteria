@@ -9,8 +9,8 @@ class ControladorCorreos():
         self.principal = principal
 
     def enviar_correo(self,destinatario,productos,cliente,total_pagar):
-        remitente = "" # correo
-        contraseña = "" # contraseña
+        remitente = "albarracinjuancarlos800@gmail.com" # correo
+        contraseña = "qjpn vhsk bwgc rfdp" # contraseña
         servidor_smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         servidor_smtp.login(remitente, contraseña)
         mensaje_correo = MIMEMultipart('alternative')

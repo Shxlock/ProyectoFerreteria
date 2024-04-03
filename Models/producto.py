@@ -16,28 +16,14 @@ class Producto:
                 id_categoria INT NOT NULL,
                 nit_proveedor INT NOT NULL,
                 fecha_vencimiento DATE,
-                FOREIGN KEY (id_categoria) REFERENCES categoria_producto(id_categoria_producto),
-                FOREIGN KEY (nit_proveedor) REFERENCES proveedor(nit_proveedor),
+                FOREIGN KEY (id_categoria) REFERENCES categoria_producto(id_categoria_producto)  ON DELETE CASCADE,
+                FOREIGN KEY (nit_proveedor) REFERENCES proveedor(nit_proveedor)  ON DELETE CASCADE,
                 PRIMARY KEY (codigo_producto)
                 )"""
             cursor.execute(sql)
         self.conn.commit()
-        
-    # def obtenerProductos(self):
-    #     try:
-    #         with self.conn.cursor() as cursor:
-    #             sql = """SELECT producto.codigo_producto,producto.nombre_producto,producto.cantidad,producto.descripcion,producto.precio_unitario, c.nombre_categoria,p.nombre_proveedor FROM producto
-    #         inner join categoria_producto c on c.id_categoria_producto = producto.id_categoria inner join
-    #         proveedor p on p.nit_proveedor = producto.nit_proveedor         
-    #         """
-    #             cursor.execute(sql)
-    #             consulta = cursor.fetchall()
-    #             return consulta
-    #     except Exception as e:
-    #         print(f"Error al ejecutar consulta: {str(e)}")
-    #         return None
-    
-    
+
+   
     def obtenerProductos(self):
         try:
             with self.conn.cursor() as cursor:
@@ -49,16 +35,12 @@ class Producto:
                 cursor.execute(sql)
                 consulta = cursor.fetchall()
                 self.conn.commit()
+                cursor.close()
                 return consulta
         except Exception as e:
             print(f"Error al ejecutar consulta: {str(e)}")
             return []  # Devolver una lista vacía en caso de error
-
-    
-        
-        
-        
-        
+      
     def ventaProductos(self,consulta,codigo):
         with self.conn.cursor() as cursor:
             sql = consulta

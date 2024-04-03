@@ -14,10 +14,13 @@ from Models.proveedor import Proveedor
 from Models.categoriaProducto import CategoriaProducto
 from Models.producto import Producto
 
+
+
 class PrincipalControlador():
-    def __init__(self,principal):
+    def __init__(self,principal): 
         self.categoriaProducto = CategoriaProducto(connection())  #Instancias del modelo categoriaProducto
         self.proveedor = Proveedor(connection())                  #Instancia del modelo proveedor
+        
         self.producto = Producto(connection())                    #Instancia de producto
         self.principal = principal                                #Instancia de la vista principal (administradorFerreteria.py)
         

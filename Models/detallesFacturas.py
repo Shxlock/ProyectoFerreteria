@@ -11,8 +11,8 @@ class DetallesFacturas:
                 codigo_producto INT NOT NULL,
                 cantidad INT NOT NULL,
                 precio_unitario INT NOT NULL,
-                FOREIGN KEY (codigo_factura) REFERENCES factura(codigo_factura),  
-                FOREIGN KEY (codigo_producto) REFERENCES producto(codigo_producto),  
+                FOREIGN KEY (codigo_factura) REFERENCES factura(codigo_factura) ON DELETE CASCADE,  
+                FOREIGN KEY (codigo_producto) REFERENCES producto(codigo_producto) ON DELETE CASCADE,  
                 PRIMARY KEY (codigo_detalles)
                 )"""
 

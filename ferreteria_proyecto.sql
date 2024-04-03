@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3307
--- Tiempo de generación: 11-01-2024 a las 21:47:40
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 04-04-2024 a las 00:03:28
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,8 +38,7 @@ CREATE TABLE `categoria_producto` (
 --
 
 INSERT INTO `categoria_producto` (`id_categoria_producto`, `nombre_categoria`, `descripcion`) VALUES
-(101, 'Herramientas Electricas', 'Herramientas Electricas'),
-(102, 'Herramientas Manuales', 'Herramientas manuales');
+(111, 'categoria 1', 'awdawd');
 
 -- --------------------------------------------------------
 
@@ -50,7 +49,7 @@ INSERT INTO `categoria_producto` (`id_categoria_producto`, `nombre_categoria`, `
 CREATE TABLE `cliente` (
   `nit_cliente` int(11) NOT NULL,
   `nombre_cliente` varchar(90) NOT NULL,
-  `email_cliente` varchar(90) NOT NULL
+  `email_cliente` varchar(90) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -58,11 +57,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`nit_cliente`, `nombre_cliente`, `email_cliente`) VALUES
-(1000342342, 'Juan', 'albarracinjuancarlos800@gmail.com'),
-(1100000000, 'Jhon', 'albarracinjuancarlos800@gmail.com'),
-(1234234234, 'Juan', 'albarracinjuancarlos800@gmail.com'),
-(1342342342, 'Juan', 'albarracinjuancarlos800@gmail.com'),
-(1663264353, 'Juan', 'albarracinjuancarlos800@gmail.com');
+(1111111113, 'Cliente 1', NULL);
 
 -- --------------------------------------------------------
 
@@ -83,17 +78,10 @@ CREATE TABLE `detalles_facturas` (
 --
 
 INSERT INTO `detalles_facturas` (`codigo_detalles`, `codigo_factura`, `codigo_producto`, `cantidad`, `precio_unitario`) VALUES
-('047BFB11', 1790, 1111, 6, 500),
-('20E604E9', 9401, 1112, 1, 120000),
-('3600FA42', 9401, 1113, 5, 2000),
-('3F2D69BD', 7896, 1112, 2, 120000),
-('3FB7D966', 2849, 1112, 3, 12000),
-('57409EDF', 918, 1111, 3, 500),
-('5D289C8D', 8979, 1111, 2, 500),
-('7E36DF27', 9401, 1111, 7, 500),
-('9E7CB6EC', 8609, 1111, 5, 500),
-('F54AA289', 8602, 1111, 2, 500),
-('F684E631', 8609, 1112, 2, 120000);
+('28AA22AA', 4280, 1111, 2, 2500),
+('CEFF44A9', 3301, 1111, 2, 2500),
+('DFCF92A9', 4747, 1111, 5, 2500),
+('E69F3068', 6029, 1111, 5, 2500);
 
 -- --------------------------------------------------------
 
@@ -116,8 +104,7 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`cedula_empleado`, `nombre_empleado`, `telefono`, `email`, `apellido`, `direccion`, `fecha_insercion`) VALUES
-(1000000000, 'empleado2', 1000000000, 'empleado2@gmail.com', 'empleado2', 'empleado2', '2023-11-27 14:14:41'),
-(1231231231, 'prueba', 2147483647, 'prueba@gmail.com', 'prueba', 'Av prueba calle prueba', '2023-11-27 14:07:26');
+(1111111111, 'Euclides', 2147483647, 'awdawd@gmail.com', 'wadawd', 'awdawd', '2024-04-03 21:54:58');
 
 -- --------------------------------------------------------
 
@@ -128,7 +115,7 @@ INSERT INTO `empleado` (`cedula_empleado`, `nombre_empleado`, `telefono`, `email
 CREATE TABLE `factura` (
   `codigo_factura` int(11) NOT NULL,
   `tipo_de_pago` varchar(90) NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
   `turno` varchar(49) NOT NULL,
   `fecha` date NOT NULL,
   `nit_cliente` int(11) NOT NULL,
@@ -140,14 +127,10 @@ CREATE TABLE `factura` (
 --
 
 INSERT INTO `factura` (`codigo_factura`, `tipo_de_pago`, `email`, `turno`, `fecha`, `nit_cliente`, `cedula_empleado`) VALUES
-(918, 'Tarjeta', 'albarracinjuancarlos800@gmail.com', 'Tarde', '2023-12-06', 1100000000, 1000000000),
-(1790, 'Efectivo', 'albarracinjuancarlos800@gmail.com', 'Mañana', '2023-12-06', 1100000000, 1000000000),
-(2849, 'Efectivo', 'juamlopez1414@gmail.com', 'Mañana', '2023-12-06', 1100000000, 1000000000),
-(7896, 'Efectivo', 'albarracinjuancarlos800@gmail.com', 'Mañana', '2023-12-06', 1100000000, 1000000000),
-(8602, 'Efectivo', 'albarracinjuancarlos800@gmail.com', 'Mañana', '2023-12-06', 1100000000, 1000000000),
-(8609, 'Efectivo', 'andersonchacon28@gmail.com', 'Mañana', '2023-12-06', 1100000000, 1000000000),
-(8979, 'Efectivo', 'albarracinjuancarlos800@gmail.com', 'Mañana', '2023-12-06', 1000342342, 1000000000),
-(9401, 'Efectivo', 'yurcar0311@gmail.com', 'Mañana', '2023-12-06', 1100000000, 1000000000);
+(3301, 'Efectivo', NULL, 'Mañana', '2024-04-03', 1111111113, 1111111111),
+(4280, 'Efectivo', NULL, 'Mañana', '2024-04-03', 1111111113, 1111111111),
+(4747, 'Efectivo', NULL, 'Mañana', '2024-04-03', 1111111113, 1111111111),
+(6029, 'Efectivo', NULL, 'Mañana', '2024-04-03', 1111111113, 1111111111);
 
 -- --------------------------------------------------------
 
@@ -171,9 +154,7 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`codigo_producto`, `nombre_producto`, `cantidad`, `descripcion`, `precio_unitario`, `id_categoria`, `nit_proveedor`, `fecha_vencimiento`) VALUES
-(1111, 'tornillosss', 7, 'tornillooos Xd', 500, 101, 102, NULL),
-(1112, 'taladro', 1, 'taladro', 120000, 101, 102, NULL),
-(1113, 'nose', 5, 'awdaw', 2000, 101, 102, NULL);
+(1111, 'producto 1', 3, 'awdawd', 2500, 111, 111, NULL);
 
 -- --------------------------------------------------------
 
@@ -195,8 +176,7 @@ CREATE TABLE `proveedor` (
 --
 
 INSERT INTO `proveedor` (`nit_proveedor`, `nombre_proveedor`, `telefono_proveedor`, `email_proveedor`, `direccion_proveedor`, `ciudad_proveedor`) VALUES
-(102, 'prueba2', 1234567890, 'prueba2@gmail.com', 'prueba2', 'prueba2'),
-(123, 'Homecenter', 2147483647, 'hoimecenter@gmail.com', 'homecenter', 'cúcuta');
+(111, 'proveedor1 ', 2147483647, 'proveedor1@gmail.com', 'awdwad', 'Cúcuta');
 
 -- --------------------------------------------------------
 
@@ -218,8 +198,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user`, `password`, `salt`, `rol`, `cedula_usuario`) VALUES
-(1, 'admin1', '$2b$12$SliGSuLmMae683RUiOMAy.oz255pvQfWEMWMzHCzPdR4lg6c73pEW', '$2b$12$SliGSuLmMae683RUiOMAy.', 'Administrador', 1231231231),
-(15, 'prueba2', '$2b$12$fUVOB2NZTjaXGIXVbEtBA.dYmLSMy6XV7Jxy0V98nVQuOZJfJLj6K', '$2b$12$fUVOB2NZTjaXGIXVbEtBA.', 'Empleado', 1000000000);
+(1, 'admin1', '$2b$12$fZMckAhEkVzJOizoBOlvjert6bmQrSqo2dcpPQI8OHT/jSbywvOCu', '$2b$12$fZMckAhEkVzJOizoBOlvje', 'Administrador', 1111111111);
 
 --
 -- Índices para tablas volcadas
@@ -285,16 +264,10 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT de la tabla `categoria_producto`
---
-ALTER TABLE `categoria_producto`
-  MODIFY `id_categoria_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
-
---
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -304,28 +277,28 @@ ALTER TABLE `user`
 -- Filtros para la tabla `detalles_facturas`
 --
 ALTER TABLE `detalles_facturas`
-  ADD CONSTRAINT `detalles_facturas_ibfk_1` FOREIGN KEY (`codigo_factura`) REFERENCES `factura` (`codigo_factura`),
-  ADD CONSTRAINT `detalles_facturas_ibfk_2` FOREIGN KEY (`codigo_producto`) REFERENCES `producto` (`codigo_producto`);
+  ADD CONSTRAINT `detalles_facturas_ibfk_1` FOREIGN KEY (`codigo_factura`) REFERENCES `factura` (`codigo_factura`) ON DELETE CASCADE,
+  ADD CONSTRAINT `detalles_facturas_ibfk_2` FOREIGN KEY (`codigo_producto`) REFERENCES `producto` (`codigo_producto`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `factura`
 --
 ALTER TABLE `factura`
-  ADD CONSTRAINT `factura_ibfk_1` FOREIGN KEY (`nit_cliente`) REFERENCES `cliente` (`nit_cliente`),
-  ADD CONSTRAINT `factura_ibfk_2` FOREIGN KEY (`cedula_empleado`) REFERENCES `empleado` (`cedula_empleado`);
+  ADD CONSTRAINT `factura_ibfk_1` FOREIGN KEY (`nit_cliente`) REFERENCES `cliente` (`nit_cliente`) ON DELETE CASCADE,
+  ADD CONSTRAINT `factura_ibfk_2` FOREIGN KEY (`cedula_empleado`) REFERENCES `empleado` (`cedula_empleado`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria_producto` (`id_categoria_producto`),
-  ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`nit_proveedor`) REFERENCES `proveedor` (`nit_proveedor`);
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria_producto` (`id_categoria_producto`) ON DELETE CASCADE,
+  ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`nit_proveedor`) REFERENCES `proveedor` (`nit_proveedor`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`cedula_usuario`) REFERENCES `empleado` (`cedula_empleado`);
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`cedula_usuario`) REFERENCES `empleado` (`cedula_empleado`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

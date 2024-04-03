@@ -9,13 +9,13 @@ class Factura:
                 CREATE TABLE IF NOT EXISTS factura
                 (codigo_factura INT NOT NULL,
                 tipo_de_pago VARCHAR(90) NOT NULL,
-                email VARCHAR(100) NOT NULL,
+                email VARCHAR(100),
                 turno VARCHAR(49) NOT NULL,
                 fecha DATE NOT NULL,
                 nit_cliente INT NOT NULL,
                 cedula_empleado INT NOT NULL,
-                FOREIGN KEY (nit_cliente) REFERENCES cliente(nit_cliente),
-                FOREIGN KEY (cedula_empleado) REFERENCES empleado(cedula_empleado),
+                FOREIGN KEY (nit_cliente) REFERENCES cliente(nit_cliente) ON DELETE CASCADE,
+                FOREIGN KEY (cedula_empleado) REFERENCES empleado(cedula_empleado) ON DELETE CASCADE,
                 PRIMARY KEY (codigo_factura)
                 )"""
 

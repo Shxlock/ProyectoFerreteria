@@ -9,6 +9,7 @@ sys.path.append(myDir)
 
 from Models.User_verification import User_verification
 from Controllers.UsuarioExistente import UsuarioExistenteError
+from Controllers.controladorValidar import ValidarControlador
 from Models.User import User
 from Models.empleado import Empleado
 from Database.Conection import connection
@@ -22,7 +23,7 @@ class Registrar():
         self.empleado = Empleado(self.conn)
         self.modelo_user = User(self.conn)
         self.modelo = User_verification(self.conn)
-       
+        
         self.usuario_existente = UsuarioExistenteError()
         self.empleado_controlador = EmpleadoControlador(self)
         
@@ -44,6 +45,6 @@ class Registrar():
             else:
                 rol = "Empleado"                                                          
                 self.modelo.agregar(self.usuario, hashed_password, salt, rol, cedula)    # si es diferente a admin1 le añadirmos como rol "Empleado"
-
+               
                 
         

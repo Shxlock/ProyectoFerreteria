@@ -36,7 +36,6 @@ class Administrador(object):
         self.facturas = FacturaControlador(self)
         
 
-
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1017, 826)
@@ -639,7 +638,7 @@ class Administrador(object):
         self.label_54.setText(_translate("MainWindow", "Tipo de pago"))
         self.label_55.setText(_translate("MainWindow", "Vendedor"))
         self.label_2.setText(_translate("MainWindow", "Email"))
-        self.label_56.setText(_translate("MainWindow", "Cliente"))
+        self.label_56.setText(_translate("MainWindow", "Nombre Cliente"))
         self.label_57.setText(_translate("MainWindow", "Turno"))
         self.btnGenerarFactura.setText(_translate("MainWindow", "Generar Factura"))
         

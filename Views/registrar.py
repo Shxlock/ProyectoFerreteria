@@ -108,10 +108,17 @@ class RegistrarEmpleado(object):
             self.registro_controlador.Datos(usuario,contraseña)
             self.lbl_alertaUsuarioContrasenia_2.setText("Usuario registrado correctamente.")
             self.lbl_alertaUsuarioContrasenia_2.setStyleSheet('background:green;color:white')
+            self.limpiar(self.inputUsuario,self.inputContrasenia)
+            
         except UsuarioExistenteError as e:
             self.lbl_alertaUsuarioContrasenia_2.setText(str(e))
             self.lbl_alertaUsuarioContrasenia_2.setStyleSheet('background:tomato;color:white')
 
+
+    def limpiar(self,*args): 
+        for arg in args:
+            arg.clear()
+        print("limpio")
 
 
 from Recursos.imagenesPyQt5_rc import *

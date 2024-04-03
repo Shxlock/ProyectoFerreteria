@@ -5,7 +5,7 @@ class Cliente:
             sql = """CREATE TABLE IF NOT EXISTS cliente
             (nit_cliente INT NOT NULL,
             nombre_cliente VARCHAR(90) NOT NULL,
-            email_cliente VARCHAR(90) NOT NULL,
+            email_cliente VARCHAR(90),
             PRIMARY KEY (nit_cliente)
             )"""
 
